@@ -1,0 +1,19 @@
+{
+  "name": "atlp-portfolio-backend",
+  "version": "1.0.0",
+  "description": "My portfolio through ATLP program",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Graziee6/atlp-portfolio-backend.git"
+  },
+  "author": "Grace Fidele",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Graziee6/atlp-portfolio-backend/issues"
+  },
+  "homepage": "https://github.com/Graziee6/atlp-portfolio-backend#readme"
+}
