@@ -1,8 +1,6 @@
 const router = require("express").Router();
 
 const Article = require("./../models/article");
-const { validArticle } = require("./../models/article");
-const { validate } = require("./../utils/validationMiddleware");
 
 const multer = require("multer");
 
@@ -44,4 +42,5 @@ const createArticle = async (req, res) => {
   res.send(article);
 };
 
-router.post(upload.single("articleThumbnail"), createArticle);
+router.route("/").post(upload.single("articleThumbnail"), createArticle);
+module.exports = router;

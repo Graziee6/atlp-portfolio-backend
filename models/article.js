@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+const Joi = require("joi")
+
 const articleSchema = mongoose.Schema({
   title: { type: String, required: true },
   content: { type: String, required: true },
