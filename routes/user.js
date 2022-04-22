@@ -13,3 +13,4 @@ const createUser = async (req, res) => {
 };
 
 router.route("/").post(createUser);
+module.exports = router;
