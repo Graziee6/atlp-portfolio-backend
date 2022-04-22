@@ -8,7 +8,7 @@ const UserSchema = mongoose.Schema({
   password: String,
 });
 
-const validateUser = (user) => {
+exports.validateUser = (user) => {
   const validUser = Joi.object({
     username: Joi.string().min(5).max(12).required(),
     email: Joi.string().required(),
