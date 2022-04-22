@@ -33,6 +33,16 @@ const updateUser = async (req, res) => {
   }
 };
 
+const deleteUser = async (req, res) => {
+  try {
+    await User.deleteOne({ _id: req.params.id });
+    res.status(204).send({ message: "User successfully deleted" });
+  } catch {
+    res.status(404);
+    res.send({ error: "User was not found - Couldn't delete" });
+  }
+};
+
 router.route("/").post(createUser);
-router.route("/:id").put(updateUser);
+router.route("/:id").put(updateUser).delete(deleteUser);
 module.exports = router;
