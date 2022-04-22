@@ -15,8 +15,9 @@ mongoose
 
     app.use("/api/users", userRoutes);
     app.use("/api/articles", articleRoutes);
-
-    app.listen(3008, () => {
-      console.log("Server has started!");
-    });
   });
+
+const server = app.listen(3008, () => {
+  console.log("Server has started!");
+});
+exports.server = server;
