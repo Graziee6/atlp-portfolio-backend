@@ -65,4 +65,11 @@ const updateArticle = async (req, res) => {
 
 router.route("/").post(upload.single("articleThumbnail"), createArticle);
 router.route("/:id").put(updateArticle);
+
+router
+  .route("/")
+  .post(upload.single("articleThumbnail"), createArticle)
+  .get(getAllArticles);
+router.route("/:id").get(getArticle);
+
 module.exports = router;

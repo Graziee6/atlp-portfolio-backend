@@ -33,6 +33,21 @@ const updateUser = async (req, res) => {
   }
 };
 
-router.route("/").post(createUser);
-router.route("/:id").put(updateUser);
+const getAllUsers = async (req, res) => {
+  const user = await User.find();
+  res.send(user);
+};
+
+const getUser = async (req, res) => {
+  try {
+    const user = User.findOne({ _id: req.params.id });
+    res.send(user);
+  } catch {
+    res.status(404);
+    res.send({ error: "User doesn't exist" });
+  }
+};
+
+router.route("/").post(createUser).get(getAllUsers);
+router.route("/:id").put(updateUser).get(getUser);
 module.exports = router;
