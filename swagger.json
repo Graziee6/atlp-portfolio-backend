@@ -1,0 +1,94 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Documentation of all bus booking APIs",
+    "version": "1.0.0",
+    "title": "Grace Fidele's Portfolio APIs",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "name": "Grace Fidele",
+      "url": "https://vercel.app/grace-fidele-my-brand",
+      "email": "gngrace10@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "tags": [
+    {
+      "name": "Article",
+      "description": "Article-related APIs"
+    }
+  ],
+  "paths": {
+    "/api/articles": {
+      "get": {
+        "tags": ["Article"],
+        "summary": "Get all articles",
+        "description": "Get all articles",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "All articles"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Article"],
+        "summary": "Post a new article",
+        "description": "Get all articles",
+        "produces": ["application/json"],
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "title",
+            "type": "string",
+            "example": "Proper commits are written like...",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "content",
+            "type": "string",
+            "example": "Proper commits are written like... is the title of this blog!"
+          },
+          {
+            "in": "formData",
+            "name": "articleThumbnail",
+            "type": "file",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "  All articles"
+          }
+        }
+      }
+    },
+    "/api/articles/{id}": {
+      "delete": {
+        "tags": ["Article"],
+        "summary": "Delete an article by ID",
+        "description": "Delete an article by ID",
+        "produces": ["application/json"],
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "name": "ArticleId",
+            "in": "path",
+            "description": "Article's id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Article deleted"
+          }
+        }
+      }
+    }
+  }
+}
