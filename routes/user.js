@@ -12,5 +12,27 @@ const createUser = async (req, res) => {
   res.send(user);
 };
 
+const updateUser = async (req, res) => {
+  try {
+    const user = User.findOne({ _id: req.params.id });
+    if (req.body.username) {
+      user.username = req.body.username;
+    }
+    if (req.body.email) {
+      user.email = req.body.email;
+    }
+    if (req.body.password) {
+      user.password = req.body.password;
+    }
+
+    await user.save();
+    res.send(user);
+  } catch {
+    res.status(404);
+    res.send({ error: "User doesn't exist" });
+  }
+};
+
 router.route("/").post(createUser);
+router.route("/:id").put(updateUser);
 module.exports = router;
