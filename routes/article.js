@@ -62,6 +62,20 @@ const updateArticle = async (req, res) => {
   }
 };
 
+const getAllArticles = async (req, res) => {
+  const article = await Article.find();
+  res.send(article);
+};
+
+const getArticle = async (req, res) => {
+  try {
+    const Article = Article.findOne({ _id: req.params.id });
+    res.send(Article);
+  } catch {
+    res.status(404);
+    res.send({ error: "Article doesn't exist" });
+  }
+};
 const deleteArticle = async (req, res) => {
   try {
     await Article.deleteOne({ _id: req.params.id });
@@ -73,5 +87,13 @@ const deleteArticle = async (req, res) => {
 };
 
 router.route("/").post(upload.single("articleThumbnail"), createArticle);
-router.route("/:id").put(updateArticle).delete(deleteArticle);
+
+router.route("/:id").put(updateArticle);
+
+router
+  .route("/")
+  .post(upload.single("articleThumbnail"), createArticle)
+  .get(getAllArticles);
+router.route("/:id").get(getArticle).put(updateArticle).delete(deleteArticle);
+
 module.exports = router;
