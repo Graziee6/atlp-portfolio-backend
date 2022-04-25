@@ -19,6 +19,10 @@
     {
       "name": "Article",
       "description": "Article-related APIs"
+    },
+    {
+      "name": "User",
+      "description": "User-related APIs"
     }
   ],
   "paths": {
