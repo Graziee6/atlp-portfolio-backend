@@ -31,4 +31,4 @@ mongoose
 const server = app.listen(3008, () => {
   console.log("Server has started!");
 });
-exports.server = server;
+module.exports = server;
