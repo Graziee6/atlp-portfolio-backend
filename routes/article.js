@@ -63,6 +63,21 @@ const updateArticle = async (req, res) => {
   }
 };
 
+const getAllArticles = async (req, res) => {
+  const article = await Article.find();
+  res.send(article);
+};
+
+const getArticle = async (req, res) => {
+  try {
+    const Article = Article.findOne({ _id: req.params.id });
+    res.send(Article);
+  } catch {
+    res.status(404);
+    res.send({ error: "Article doesn't exist" });
+  }
+};
+
 router.route("/").post(upload.single("articleThumbnail"), createArticle);
 router.route("/:id").put(updateArticle);
 
