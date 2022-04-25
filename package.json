@@ -2,6 +2,10 @@
   "name": "atlp-portfolio-backend",
   "version": "1.0.0",
   "description": "My portfolio through ATLP program",
+  "engines": {
+    "node": "14.19.0",
+    "npm":"7.21.1"
+  },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
