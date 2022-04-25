@@ -49,7 +49,6 @@ const updateArticle = async (req, res) => {
       article.title = req.body.title;
     }
     if (req.body.content) {
-      notep;
       article.content = req.body.content;
     }
     if (req.body.articleThumbnail) {
@@ -77,14 +76,24 @@ const getArticle = async (req, res) => {
     res.send({ error: "Article doesn't exist" });
   }
 };
+const deleteArticle = async (req, res) => {
+  try {
+    await Article.deleteOne({ _id: req.params.id });
+    res.status(204).send("Article successfully deleted");
+  } catch {
+    res.status(404);
+    res.send({ error: "Article was not found - Couldn't delete" });
+  }
+};
 
 router.route("/").post(upload.single("articleThumbnail"), createArticle);
+
 router.route("/:id").put(updateArticle);
 
 router
   .route("/")
   .post(upload.single("articleThumbnail"), createArticle)
   .get(getAllArticles);
-router.route("/:id").get(getArticle);
+router.route("/:id").get(getArticle).put(updateArticle).delete(deleteArticle);
 
 module.exports = router;
