@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: grace-fidele-atlp-my-brand
+    name: blitzapp
     env: node
     plan: free
     buildCommand: yarn --frozen-lockfile --prod=false && blitz build
