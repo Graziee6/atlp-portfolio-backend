@@ -33,6 +33,21 @@ const updateUser = async (req, res) => {
   }
 };
 
+const getAllUsers = async (req, res) => {
+  const user = await User.find();
+  res.send(user);
+};
+
+const getUser = async (req, res) => {
+  try {
+    const user = User.findOne({ _id: req.params.id });
+    res.send(user);
+  } catch {
+    res.status(404);
+    res.send({ error: "User doesn't exist" });
+  }
+};
+
 const deleteUser = async (req, res) => {
   try {
     await User.deleteOne({ _id: req.params.id });
@@ -43,6 +58,6 @@ const deleteUser = async (req, res) => {
   }
 };
 
-router.route("/").post(createUser);
-router.route("/:id").put(updateUser).delete(deleteUser);
+router.route("/").post(createUser).get(getAllUsers);
+router.route("/:id").put(updateUser).get(getUser).delete(deleteUser);
 module.exports = router;
