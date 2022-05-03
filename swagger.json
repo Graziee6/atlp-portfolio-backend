@@ -73,25 +73,6 @@
       }
     },
     "/api/articles/{id}": {
-      "get": {
-        "tags": ["Article"],
-        "summary": "Get an article by ID",
-        "description": "Get an article by ID",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "ArticleId",
-            "in": "path",
-            "description": "Article's id",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Article successfully retrieved"
-          }
-        }
-      },
       "delete": {
         "tags": ["Article"],
         "summary": "Delete an article by ID",
@@ -109,6 +90,18 @@
         "responses": {
           "200": {
             "description": "Article deleted"
+          }
+        }
+      }
+    },
+    "/api/users/": {
+      "get": {
+        "tags": ["User"],
+        "description": "Get all registered users",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "All users"
           }
         }
       }
