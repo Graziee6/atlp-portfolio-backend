@@ -85,10 +85,10 @@ const getUser = async (req, res) => {
 const deleteUser = async (req, res) => {
   try {
     await User.deleteOne({ _id: req.params.id });
-    res.status(204).send({ message: "User successfully deleted" });
+    res.status(204).json({ message: "User successfully deleted" });
   } catch {
     res.status(404);
-    res.send({ error: "User was not found - Couldn't delete" });
+    res.json({ message: "User was not found - Couldn't delete" });
   }
 };
 
