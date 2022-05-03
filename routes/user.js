@@ -34,6 +34,7 @@ const createUser = async (req, res) => {
 const login = async (req, res) => {
   const { email, password } = req.body;
   let user = await User.findOne({ email: email });
+
   if (!user) {
     return res.json({ message: "Invalid email or password" });
   }
@@ -42,7 +43,7 @@ const login = async (req, res) => {
     return res.json({ message: "Invalid email or password" });
   }
   let token = user.generateAuthToken();
-  return token;
+  return res.json({ data: token });
 };
 
 const updateUser = async (req, res) => {
