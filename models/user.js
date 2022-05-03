@@ -29,4 +29,4 @@ module.exports.validateUser = (user) => {
   return validUser.validate(user);
 };
 
-module.exports = mongoose.model("User", UserSchema);
+module.exports.User = mongoose.model("User", UserSchema);

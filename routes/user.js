@@ -8,7 +8,11 @@ const { authenticate } = require("./../middleware/auth");
 
 const createUser = async (req, res) => {
   const { error } = validateUser(req.body);
-  if (error) return error;
+  if (error)
+    return res.json({
+      message: "Invalid username, password or email",
+      data: error.details[0].message,
+    });
 
   const storedEmail = await User.findOne({ email: req.body.email });
   if (storedEmail) {
