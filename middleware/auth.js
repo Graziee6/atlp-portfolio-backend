@@ -1,5 +1,7 @@
 const jwt = require("jsonwebtoken");
 
+const dotenv = require("dotenv").config();
+
 exports.authenticate = (req, res, next) => {
   const token = req.header["Authorization"].trim();
   if (!token) return res.send("Login first");

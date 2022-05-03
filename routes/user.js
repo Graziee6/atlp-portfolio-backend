@@ -28,7 +28,7 @@ const createUser = async (req, res) => {
     password: password,
   });
   await user.save();
-  res.send(user);
+  res.json(user);
 };
 
 const login = async (req, res) => {
@@ -60,25 +60,25 @@ const updateUser = async (req, res) => {
     }
 
     await user.save();
-    res.send(user);
+    res.json(user);
   } catch {
     res.status(404);
-    res.send({ error: "User doesn't exist" });
+    res.json({ error: "User doesn't exist" });
   }
 };
 
 const getAllUsers = async (req, res) => {
   const user = await User.find();
-  res.send(user);
+  res.json(user);
 };
 
 const getUser = async (req, res) => {
   try {
     const user = User.findOne({ _id: req.params.id });
-    res.send(user);
+    res.json(user);
   } catch {
     res.status(404);
-    res.send({ error: "User doesn't exist" });
+    res.send("User doesn't exist");
   }
 };
 
@@ -88,7 +88,7 @@ const deleteUser = async (req, res) => {
     res.status(204).json({ message: "User successfully deleted" });
   } catch {
     res.status(404);
-    res.json({ message: "User was not found - Couldn't delete" });
+    res.send( "User was not found - Couldn't delete" );
   }
 };
 
