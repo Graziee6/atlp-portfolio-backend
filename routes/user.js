@@ -34,6 +34,7 @@ const createUser = async (req, res) => {
 const login = async (req, res) => {
   const { email, password } = req.body;
   let user = await User.findOne({ email: email });
+
   if (!user) {
     return res.json({ message: "Invalid email or password" });
   }
@@ -42,7 +43,7 @@ const login = async (req, res) => {
     return res.json({ message: "Invalid email or password" });
   }
   let token = user.generateAuthToken();
-  return token;
+  return res.json({ data: token });
 };
 
 const updateUser = async (req, res) => {
@@ -84,10 +85,10 @@ const getUser = async (req, res) => {
 const deleteUser = async (req, res) => {
   try {
     await User.deleteOne({ _id: req.params.id });
-    res.status(204).send({ message: "User successfully deleted" });
+    res.status(204).json({ message: "User successfully deleted" });
   } catch {
     res.status(404);
-    res.send({ error: "User was not found - Couldn't delete" });
+    res.json({ message: "User was not found - Couldn't delete" });
   }
 };
 

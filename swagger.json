@@ -119,6 +119,30 @@
         }
       }
     },
+    "/api/users/login": {
+      "post": {
+        "tags": ["User"],
+        "description": "User login",
+        "summary": "User login",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "type": "object",
+            "schema": {
+              "email": "string",
+              "password": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully logged in"
+          }
+        }
+      }
+    },
     "/api/users/": {
       "get": {
         "tags": ["User"],
@@ -164,27 +188,33 @@
             "required": true
           },
           {
-            "name": "username",
             "in": "body",
-            "description": "username",
-            "required": true
-          },
-          {
-            "name": "email",
-            "in": "body",
-            "description": "email",
-            "required": true
-          },
-          {
-            "name": "password",
-            "in": "body",
-            "description": "password",
-            "required": true
+            "name": "body",
+            "type": "object",
+            "schema": {
+              "username": "string",
+              "email": "string",
+              "password": "string"
+            }
           }
         ],
         "responses": {
           "200": { "description": "User updated successfully" }
         }
+      },
+      "delete": {
+        "tags": ["User"],
+        "description": "Delete user",
+        "summary": "Delete user",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "user's id",
+            "required": true
+          }
+        ]
       }
     }
   }
