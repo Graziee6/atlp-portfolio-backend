@@ -94,6 +94,31 @@
         }
       }
     },
+    "/api/users/signup": {
+      "post": {
+        "tags": ["User"],
+        "description": "Post a new user",
+        "summary": "Post a new user",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "type": "object",
+            "schema": {
+              "username": "string",
+              "email": "string",
+              "password": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully created a user"
+          }
+        }
+      }
+    },
     "/api/users/": {
       "get": {
         "tags": ["User"],
@@ -103,6 +128,62 @@
           "200": {
             "description": "All users"
           }
+        }
+      }
+    },
+    "/api/users/{id}": {
+      "get": {
+        "tags": ["User"],
+        "description": "Get user by id",
+        "summary": "Get user by id",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "user's id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User was successfully retrieved"
+          }
+        }
+      },
+      "put": {
+        "tags": ["User"],
+        "description": "Update user",
+        "summary": "Update user",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "user's id",
+            "required": true
+          },
+          {
+            "name": "username",
+            "in": "body",
+            "description": "username",
+            "required": true
+          },
+          {
+            "name": "email",
+            "in": "body",
+            "description": "email",
+            "required": true
+          },
+          {
+            "name": "password",
+            "in": "body",
+            "description": "password",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": { "description": "User updated successfully" }
         }
       }
     }
