@@ -1,15 +1,44 @@
 const router = require("express").Router();
 
-const User = require("../models/user");
+const bcrypt = require("bcrypt");
+
+const { User, validateUser } = require("../models/user");
+
+const { authenticate } = require("./../middleware/auth");
 
 const createUser = async (req, res) => {
+  const { error } = validateUser(req.body);
+  if (error) return error;
+
+  const storedEmail = await User.findOne({ email: req.body.email });
+  if (storedEmail) {
+    return res.json({ message: "A user with that email is already in" });
+  }
+
+  const saltRounds = 11;
+  const password = await bcrypt.hash(req.body.password, saltRounds);
+
   const user = new User({
     username: req.body.username,
     email: req.body.email,
-    password: req.body.password,
+    password: password,
   });
   await user.save();
   res.send(user);
+};
+
+const login = async (req, res) => {
+  const { email, password } = req.body;
+  let user = await User.findOne({ email: email });
+  if (!user) {
+    return res.json({ message: "Invalid email or password" });
+  }
+  let storedPassword = await bcrypt.compare(password, user.password);
+  if (!storedPassword) {
+    return res.json({ message: "Invalid email or password" });
+  }
+  let token = user.generateAuthToken();
+  return token;
 };
 
 const updateUser = async (req, res) => {
@@ -58,6 +87,12 @@ const deleteUser = async (req, res) => {
   }
 };
 
-router.route("/").post(createUser).get(getAllUsers);
-router.route("/:id").put(updateUser).get(getUser).delete(deleteUser);
+router.post("/signup", createUser);
+router.post("/login", login);
+router.route("/").get(getAllUsers);
+router
+  .route("/:id")
+  .put(authenticate, updateUser)
+  .get(getUser)
+  .delete(deleteUser);
 module.exports = router;

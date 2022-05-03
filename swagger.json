@@ -104,6 +104,60 @@
             "description": "All users"
           }
         }
+      },
+      "post": {
+        "tags": ["User"],
+        "description": "Post a new user",
+        "summary": "Post a new user",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "username",
+            "type": "string",
+            "example": "gracefidele709",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "valid email",
+            "type": "string",
+            "example": "gracefidele709@gmail.com"
+          },
+          {
+            "in": "formData",
+            "name": "password",
+            "type": "string",
+            "required": true,
+            "example": "gracefidele@709"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "  All articles"
+          }
+        }
+      }
+    },
+    "/api/users/{id}": {
+      "get": {
+        "tags": ["User"],
+        "description": "Get user by id",
+        "summary": "Get user by id",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "user's id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User was successfully retrieved"
+          }
+        }
       }
     }
   }
