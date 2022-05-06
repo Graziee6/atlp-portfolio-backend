@@ -3,12 +3,14 @@ const userRoutes = require("./routes/user");
 const articleRoutes = require("./routes/article");
 const express = require("express");
 const app = express();
+const dotenv = require("dotenv")
+dotenv.config();
 
 const swaggerUi = require("swagger-ui-express");
 
 const path = require("path");
 mongoose
-  .connect("mongodb://0.0.0.0:27017/ATLP-Portfolio", {
+  .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
   })
   .then(() => {
