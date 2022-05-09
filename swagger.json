@@ -40,8 +40,8 @@
       },
       "post": {
         "tags": ["Article"],
-        "summary": "Get all articles",
-        "description": "Get all articles",
+        "summary": "Post a new article",
+        "description": "Post a new article",
         "produces": ["application/json"],
         "consumes": ["application/json"],
         "parameters": [
