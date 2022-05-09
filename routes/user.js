@@ -63,7 +63,7 @@ const updateUser = async (req, res) => {
     }
 
     await user.save();
-    res.json(user);
+    return res.json(user);
   } catch(error) {
     
     return res.json({ data:error });
@@ -100,7 +100,7 @@ router.post("/login", login);
 router.route("/").get(getAllUsers);
 router
   .route("/:id")
-  .put(authenticate, updateUser)
+  .put(updateUser)
   .get(getUser)
   .delete(deleteUser);
 module.exports = router;
