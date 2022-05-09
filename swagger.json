@@ -147,6 +147,7 @@
       "get": {
         "tags": ["User"],
         "description": "Get all registered users",
+        "summary": "Get all registered users",
         "produces": ["application/json"],
         "responses": {
           "200": {
