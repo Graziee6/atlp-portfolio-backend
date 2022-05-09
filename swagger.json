@@ -163,7 +163,7 @@
         "produces": ["application/json"],
         "parameters": [
           {
-            "name": "userId",
+            "name": "id",
             "in": "path",
             "description": "user's id",
             "required": true

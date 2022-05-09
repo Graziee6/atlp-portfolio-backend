@@ -28,7 +28,7 @@ const createUser = async (req, res) => {
     password: password,
   });
   await user.save();
-  res.json(user);
+  return res.json(user);
 };
 
 const login = async (req, res) => {
@@ -47,38 +47,41 @@ const login = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
+  const {id} = req.params;
   try {
-    const user = User.findOne({ _id: req.params.id });
-    if (req.body.username) {
-      user.username = req.body.username;
-    }
-    if (req.body.email) {
-      user.email = req.body.email;
-    }
-    if (req.body.password) {
-      user.password = req.body.password;
+    const user = await User.findById(id);
+    if(user){
+      if (req.body.username) {
+        user.username = req.body.username;
+      }
+      if (req.body.email) {
+        user.email = req.body.email;
+      }
+      if (req.body.password) {
+        user.password = req.body.password;
+      }
     }
 
     await user.save();
     res.json(user);
-  } catch {
-    res.status(404);
-    res.json({ error: "User doesn't exist" });
+  } catch(error) {
+    
+    return res.json({ data:error });
   }
 };
 
 const getAllUsers = async (req, res) => {
   const user = await User.find();
-  res.json(user);
+  return res.json(user);
 };
 
 const getUser = async (req, res) => {
+  const {id} = req.params;
   try {
-    const user = User.findOne({ _id: req.params.id });
-    res.json(user);
-  } catch {
-    res.status(404);
-    res.send("User doesn't exist");
+    const user = await User.findById(id);
+    return res.json(user);
+  } catch (error){
+    return res.json({data:error});
   }
 };
 
@@ -86,9 +89,9 @@ const deleteUser = async (req, res) => {
   try {
     await User.deleteOne({ _id: req.params.id });
     res.status(204).json({ message: "User successfully deleted" });
-  } catch {
-    res.status(404);
-    res.send( "User was not found - Couldn't delete" );
+  } catch (error){
+    return res.json({data:error});
+    
   }
 };
 
