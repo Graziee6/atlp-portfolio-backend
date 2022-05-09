@@ -34,13 +34,13 @@
         "produces": ["application/json"],
         "responses": {
           "200": {
-            "description": "All articles"
+            "description": "Return all articles"
           }
         }
       },
       "post": {
         "tags": ["Article"],
-        "summary": "Post a new article",
+        "summary": "Get all articles",
         "description": "Get all articles",
         "produces": ["application/json"],
         "consumes": ["application/json"],
@@ -67,7 +67,7 @@
         ],
         "responses": {
           "200": {
-            "description": "  All articles"
+            "description": "Return all articles"
           }
         }
       }
@@ -97,8 +97,8 @@
     "/api/users/signup": {
       "post": {
         "tags": ["User"],
-        "description": "Post a new user",
-        "summary": "Post a new user",
+        "description": "Create a new user",
+        "summary": "Create a new user",
         "produces": ["application/json"],
         "parameters": [
           {
@@ -150,7 +150,7 @@
         "produces": ["application/json"],
         "responses": {
           "200": {
-            "description": "All users"
+            "description": "Return all users"
           }
         }
       }
@@ -171,7 +171,7 @@
         ],
         "responses": {
           "200": {
-            "description": "User was successfully retrieved"
+            "description": "User successfully retrieved!"
           }
         }
       },
@@ -199,7 +199,7 @@
           }
         ],
         "responses": {
-          "200": { "description": "User updated successfully" }
+          "200": { "description": "User updated successfully!" }
         }
       },
       "delete": {
@@ -214,7 +214,12 @@
             "description": "user's id",
             "required": true
           }
-        ]
+        ],
+        "responses":{
+          "200":{
+            "description":"User deleted"
+          }
+        }
       }
     }
   }
