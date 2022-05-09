@@ -5,6 +5,7 @@ const express = require("express");
 const app = express();
 const dotenv = require("dotenv")
 dotenv.config();
+const PORT = process.env.PORT || 3000;
 
 const swaggerUi = require("swagger-ui-express");
 
@@ -30,7 +31,7 @@ mongoose
     app.use("/api/articles", articleRoutes);
   });
 
-const server = app.listen(3008, () => {
+const server = app.listen(PORT, () => {
   console.log("Server has started!");
 });
 module.exports = server;
