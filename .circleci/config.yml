@@ -1,0 +1,36 @@
+version: 2.1
+
+executors:
+  linux-13:
+    docker:
+      - image: cimg/node:13.13
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+  macos: &macos-executor
+    macos:
+      xcode: 12.5.1
+
+jobs:
+  test:
+    parameters:
+      os:
+        type: executor
+      node-version:
+        type: string
+    executor: << parameters.os >>
+    steps:
+      - checkout
+      - when:
+          condition:
+            equal: [ *macos-executor, << parameters.os >> ]
+          steps:
+            - run: echo << parameters.node-version >>
+      - run: echo 0
+
+workflows:
+  all-tests:
+    jobs:
+      - test:
+          os: macos
+          node-version: "14.19.2"
