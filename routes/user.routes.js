@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 
 const { User, validateUser } = require("../models/user");
 
-const { authenticate } = require("./../middleware/auth");
+const { authenticate } = require("../middleware/auth");
 
 const createUser = async (req, res) => {
   const { error } = validateUser(req.body);
