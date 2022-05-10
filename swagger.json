@@ -81,7 +81,7 @@
         "consumes": ["application/json"],
         "parameters": [
           {
-            "name": "ArticleId",
+            "name": "id",
             "in": "path",
             "description": "Article's id",
             "required": true
