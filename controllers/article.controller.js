@@ -42,8 +42,9 @@ exports.createArticle = async (req, res) => {
 
 exports.updateArticle = async (req, res) => {
   try {
-    const article = Article.findOne({ _id: req.params.id });
-    if (req.body.title) {
+    const article = await Article.findOne({ _id: req.params.id });
+    if(article){
+        if (req.body.title) {
       article.title = req.body.title;
     }
     if (req.body.content) {
@@ -52,8 +53,10 @@ exports.updateArticle = async (req, res) => {
     if (req.body.articleThumbnail) {
       article.articleThumbnail = req.body.articleThumbnail;
     }
+    }
+    
     await article.save();
-    res.send(article);
+    res.json(article);
   } catch {
     res.status(404);
     res.send({ error: "Article doesn't exist" });
@@ -62,13 +65,13 @@ exports.updateArticle = async (req, res) => {
 
 exports.getAllArticles = async (req, res) => {
   const article = await Article.find();
-  res.send(article);
+  res.json(article);
 };
 
 exports.getArticle = async (req, res) => {
   try {
-    const Article = Article.findOne({ _id: req.params.id });
-    res.send(Article);
+    const Article = await Article.findOne({ _id: req.params.id });
+    res.json(Article);
   } catch {
     res.status(404);
     res.send({ error: "Article doesn't exist" });
