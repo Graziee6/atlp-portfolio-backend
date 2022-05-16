@@ -4,7 +4,7 @@ const {createUser, login, getAllUsers, getUser, updateUser, deleteUser} = requir
 
 router.post("/signup", createUser);
 router.post("/login", login);
-router.route("/").get(getAllUsers);
+router.route("/").get(login, getAllUsers);
 router
   .route("/:id")
   .put(updateUser)

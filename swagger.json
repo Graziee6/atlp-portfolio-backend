@@ -1,5 +1,13 @@
 {
   "swagger": "2.0",
+  "components":{
+    "securitySchemes":{
+      "bearerAuth":  {    
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
   "info": {
     "description": "Documentation of all bus booking APIs",
     "version": "1.0.0",
@@ -28,6 +36,9 @@
   "paths": {
     "/api/articles": {
       "get": {
+        "security":{
+         "bearerAuth": []
+        },
         "tags": ["Article"],
         "summary": "Get all articles",
         "description": "Get all articles",
@@ -146,6 +157,9 @@
     "/api/users/": {
       "get": {
         "tags": ["User"],
+        "security":{
+          "bearerAuth": []
+         },
         "description": "Get all registered users",
         "summary": "Get all registered users",
         "produces": ["application/json"],
@@ -177,6 +191,9 @@
         }
       },
       "put": {
+        "security":{
+          "bearerAuth": []
+         },
         "tags": ["User"],
         "description": "Update user",
         "summary": "Update user",
